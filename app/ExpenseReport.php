@@ -10,7 +10,7 @@ class ExpenseReport extends Model
      * Para trabajar con SQL Server (Fechas)
      * @var string
      */
-    protected $dateFormat = 'Y-d-m H:i:s';
+    protected $dateFormat = 'Y-d-m H:i:s.v';
 
     protected $fillable = [
         'title'

@@ -22,8 +22,8 @@
                             {{ $expense->title }}
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="">Eliminar</a>
-                            <a class="btn btn-primary" href="">Editar</a>
+                            <a class="btn btn-danger" href="{{ route('expense_reports.destroy', $expense->id) }}">Eliminar</a>
+                            <a class="btn btn-primary" href="{{ route('expense_reports.edit', $expense->id) }}">Editar</a>
                         </td>
                     </tr>
                 @endforeach

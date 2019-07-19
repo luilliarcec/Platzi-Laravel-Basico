@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExpenseReport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -54,7 +55,10 @@ class ExpenseReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $report = ExpenseReport::find($id);
+        return view('expense-reports.edit', [
+            'report' => $report,
+        ]);
     }
 
     /**
@@ -66,7 +70,11 @@ class ExpenseReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $report = ExpenseReport::find($id);
+        $report->title = $request->get('title');
+        $report->save();
+
+        return redirect()->route('expense_reports.index');
     }
 
     /**
