@@ -11,10 +11,11 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Para trabajar con SQL Server (Fechas)
+     * @var string
      */
+    protected $dateFormat = 'Y-d-m H:i:s';
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
