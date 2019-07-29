@@ -22,10 +22,18 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Título del reporte" name="title">
+                        <input type="text"
+                               class="form-control @error('title') is-invalid @enderror"
+                               id="title"
+                               placeholder="Título del reporte"
+                               name="title"
+                               value="{{ old('title') }}">
+
+                        @error('title')
                         <div class="invalid-feedback">
-                            Error.
+                            {{ $message }}
                         </div>
+                        @enderror
                     </div>
                 </div>
 

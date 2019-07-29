@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExpenseReport;
+use App\Http\Requests\StoreExpenseReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,11 +25,13 @@ class ExpenseReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreExpenseReport $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreExpenseReport $request)
     {
+        $validated = $request->validated();
+
         $report = new ExpenseReport();
         $report->title = $request->get('title');
         $report->save();
@@ -64,12 +67,14 @@ class ExpenseReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param StoreExpenseReport $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreExpenseReport $request, $id)
     {
+        $validated = $request->validated();
+
         $report = ExpenseReport::findOrFail($id);
         $report->title = $request->get('title');
         $report->save();

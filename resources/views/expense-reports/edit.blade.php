@@ -24,15 +24,17 @@
                     <div class="col-md-6 mb-2">
                         <label for="title">Title</label>
                         <input type="text"
-                               class="form-control"
+                               class="form-control @error('title') is-invalid @enderror"
                                id="title"
                                placeholder="Título del reporte"
                                name="title"
-                               value="{{ $report->title }}"
-                        >
+                               value="@if(old('title')){{ old('title') }}@else{{ $report->title }}@endif">
+
+                        @error('title')
                         <div class="invalid-feedback">
-                            Error.
+                            {{ $message }}
                         </div>
+                        @enderror
                     </div>
                 </div>
 
