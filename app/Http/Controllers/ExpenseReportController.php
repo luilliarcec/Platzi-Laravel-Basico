@@ -39,16 +39,18 @@ class ExpenseReportController extends Controller
         return redirect()->route('expense_reports.index');
     }
 
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param int $id
-//     * @return Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
+    /**
+     * Display the specified resource.
+     *
+     * @param ExpenseReport $expenseReport
+     * @return void
+     */
+    public function show(ExpenseReport $expenseReport)
+    {
+        return view('expense-reports.show', [
+            'report' => $expenseReport,
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

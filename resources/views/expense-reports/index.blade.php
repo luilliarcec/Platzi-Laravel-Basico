@@ -19,11 +19,15 @@
                 @foreach($expenseReports as $expense)
                     <tr>
                         <td>
-                            {{ $expense->title }}
+                            <a href="{{ route('expense_reports.show', $expense->id) }}">
+                                {{ $expense->title }}
+                            </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ route('expense_reports.confirmDelete', $expense->id) }}">Eliminar</a>
-                            <a class="btn btn-primary" href="{{ route('expense_reports.edit', $expense->id) }}">Editar</a>
+                            <a class="btn btn-danger"
+                               href="{{ route('expense_reports.confirmDelete', $expense->id) }}">Eliminar</a>
+                            <a class="btn btn-primary"
+                               href="{{ route('expense_reports.edit', $expense->id) }}">Editar</a>
                         </td>
                     </tr>
                 @endforeach
