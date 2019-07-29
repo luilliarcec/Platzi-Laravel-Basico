@@ -36,26 +36,26 @@ class ExpenseReportController extends Controller
         return redirect()->route('expense_reports.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+//    /**
+//     * Display the specified resource.
+//     *
+//     * @param int $id
+//     * @return Response
+//     */
+//    public function show($id)
+//    {
+//        //
+//    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
     {
-        $report = ExpenseReport::find($id);
+        $report = ExpenseReport::findOrFail($id);
         return view('expense-reports.edit', [
             'report' => $report,
         ]);
@@ -65,26 +65,42 @@ class ExpenseReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        $report = ExpenseReport::find($id);
+        $report = ExpenseReport::findOrFail($id);
         $report->title = $request->get('title');
         $report->save();
 
         return redirect()->route('expense_reports.index');
     }
 
+    /***
+     * Show form for confirm delete
+     *
+     * @param $id
+     * @return Response
+     */
+    public function confirmDelete($id)
+    {
+        $report = ExpenseReport::findOrFail($id);
+        return view('expense-reports.delete', [
+            'report' => $report,
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
-        //
+        $report = ExpenseReport::findOrFail($id);
+        $report->delete($report);
+        return redirect()->route('expense_reports.index');
     }
 }
