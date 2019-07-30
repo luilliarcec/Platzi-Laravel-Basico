@@ -6,6 +6,7 @@
             <div class="col">
                 <h1>Detalle del Reporte: {{ $report->title  }}</h1>
                 <h5><b>Total de gastos: </b>$ {{ $report->expenses->sum('amount') }}</h5>
+                <h5><b>Dueño del reporte: </b>{{ $report->user->name }}</h5>
             </div>
         </div>
 

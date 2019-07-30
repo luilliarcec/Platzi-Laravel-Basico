@@ -8,6 +8,7 @@ use App\Mail\SummaryReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class ExpenseReportController extends Controller
@@ -24,7 +25,7 @@ class ExpenseReportController extends Controller
     public function index()
     {
         return view('expense-reports.index', [
-            'expenseReports' => ExpenseReport::all(),
+            'expenseReports' => ExpenseReport::where('user_id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -48,6 +49,7 @@ class ExpenseReportController extends Controller
 
         $report = new ExpenseReport();
         $report->title = $request->get('title');
+        $report->user_id = Auth::user()->id;
         $report->save();
 
         return redirect()->route('expense_reports.index');

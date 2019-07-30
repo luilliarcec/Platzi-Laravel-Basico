@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col">
         <h1>Reporte de gastos {{ $report->id }}: {{ $report->title }}</h1>
-        <h4><b>Total del reporte: $</b>{{ $report->expenses->sum('amount') }}</h4>
+        <h5><b>Total del reporte: $</b>{{ $report->expenses->sum('amount') }}</h5>
+        <h5><b>Dueño del reporte: </b>{{ $report->user->name }}</h5>
     </div>
 </div>
 
