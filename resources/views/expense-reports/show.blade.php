@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col">
             <h1>Detalle del Reporte: {{ $report->title  }}</h1>
+            <h5><b>Total de gastos: </b>$ {{ $report->expenses->sum('amount') }}</h5>
         </div>
     </div>
 
