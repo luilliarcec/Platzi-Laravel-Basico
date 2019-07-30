@@ -3,14 +3,14 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Eliminar Reporte {{ $report->id  }}</h1>
+            <h1>Eliminar Reporte de {{ $report->title  }}</h1>
             <h3>¿Está seguro de eliminar este reporte?</h3>
         </div>
     </div>
 
     <div class="row my-3">
         <div class="col">
-            <a class="btn btn-secondary" href="{{ route('expense_reports.index') }}">Atrás</a>
+            <a class="btn btn-sm btn-dark" href="{{ route('expense_reports.index') }}">Regresar</a>
         </div>
     </div>
 
@@ -23,11 +23,11 @@
 
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
-                        <label>Reporte: {{ $report->title }}</label>
+                        <label> <b>Reporte: </b>{{ $report->title }}</label>
                     </div>
                 </div>
 
-                <button class="btn btn-primary">Eliminar</button>
+                <button class="btn btn-sm btn-danger">Eliminar</button>
             </form>
         </div>
     </div>

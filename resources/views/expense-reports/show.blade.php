@@ -3,43 +3,56 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Reporte {{ $report->title  }}</h1>
+            <h1>Detalle del Reporte: {{ $report->title  }}</h1>
         </div>
     </div>
 
     <div class="row my-3">
         <div class="col">
-            <a class="btn btn-secondary" href="{{ route('expense_reports.index') }}">Atrás</a>
-        </div>
-
-        <div class="col offset-9">
-            <a class="btn btn-success" href="{{ route('expense_reports.confirmSendMail', $report->id) }}">Enviar Mail</a>
+            <a class="btn btn-sm btn-dark" href="{{ route('expense_reports.index') }}">Regresar</a>
+            <a class="btn btn-sm btn-primary" href="{{ route('expense_reports.confirmSendMail', $report->id) }}">
+                Enviar Reporte por Email</a>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <h3>Detalles</h3>
+            <h4>Gastos de este reporte</h4>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <table class="table">
-                @foreach($report->expenses as $expense)
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td>{{ $expense->description }}</td>
-                        <td>{{ $expense->created_at }}</td>
-                        <td>{{ $expense->amount }}</td>
+                        <th>Descripción</th>
+                        <th>Fecha de creación</th>
+                        <th>Monto</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($report->expenses as $expense)
+                        <tr>
+                            <td>{{ $expense->description }}</td>
+                            <td>{{ $expense->created_at }}</td>
+                            <td>{{ $expense->amount }}</td>
+                            <td><a class="btn btn-sm btn-danger"
+                                   href="{{ route('expense.destroy', [$report->id, $expense->id]) }}"><i
+                                        class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <a class="btn btn-warning" href="{{ route('expense.create', $report->id) }}">Nuevo gasto</a>
+            <a class="btn btn-sm btn-warning" href="{{ route('expense.create', $report->id) }}">Nuevo gasto</a>
         </div>
     </div>
 @endsection

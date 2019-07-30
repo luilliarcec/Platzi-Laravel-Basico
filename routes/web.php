@@ -30,6 +30,9 @@ Route::get('/expense_reports/{expense_report}/confirm_delete', 'ExpenseReportCon
 Route::get('/expense_reports/{expense_reports}/send_mail', 'ExpenseReportController@confirmSendMail')
     ->name('expense_reports.confirmSendMail');
 
+Route::post('/expense_reports/{expense_reports}/send_mail', 'ExpenseReportController@sendMail')
+    ->name('expense_reports.sendMail');
+
 /* Expenses */
 Route::get('/expense_reports/{expense_reports}/expense/create', 'ExpenseController@create')
     ->name('expense.create');
@@ -37,5 +40,5 @@ Route::get('/expense_reports/{expense_reports}/expense/create', 'ExpenseControll
 Route::post('/expense_reports/{expense_reports}/expense', 'ExpenseController@store')
     ->name('expense.store');
 
-Route::delete('/expense_reports/{expense_reports}/expense/{expense}', 'ExpenseController@destroy')
+Route::get('/expense_reports/{expense_reports}/expense/{expense}', 'ExpenseController@destroy')
     ->name('expense.destroy');

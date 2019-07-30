@@ -110,4 +110,24 @@ class ExpenseReportController extends Controller
         $report->delete($report);
         return redirect()->route('expense_reports.index');
     }
+
+    /**
+     * @param int $id
+     * @return Response
+     */
+    public function confirmSendMail($id)
+    {
+        $report = ExpenseReport::findOrFail($id);
+        return view('expense-reports.confirm-send-mail', [
+            'report' => $report,
+        ]);
+    }
+
+    public function sendMail($id)
+    {
+        $report = ExpenseReport::findOrFail($id);
+        return view('expense-reports.confirm-send-mail',[
+            'report' => $report,
+        ]);
+    }
 }

@@ -9,7 +9,7 @@
 
     <div class="row my-3">
         <div class="col">
-            <a class="btn btn-secondary" href="{{ route('expense_reports.index') }}">Atrás</a>
+            <a class="btn btn-sm btn-dark" href="{{ route('expense_reports.index') }}">Regresar</a>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-sm btn-success">Guardar</button>
             </form>
         </div>
     </div>
