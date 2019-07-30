@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Editar Reporte {{ $report->title  }}</h1>
+            <h1>Reporte {{ $report->title  }}</h1>
         </div>
     </div>
 
@@ -14,21 +14,26 @@
     </div>
 
     <div class="row">
+        <h3>Detalles</h3>
+    </div>
+
+    <div class="row">
         <div class="col">
+            <table class="table">
+                @foreach($report->expenses as $expense)
+                    <tr>
+                        <td>{{ $expense->description }}</td>
+                        <td>{{ $expense->created_at }}</td>
+                        <td>{{ $expense->amount }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </div>
 
-            <div class="form-row">
-                <div class="col-md-6 mb-2">
-                    <label for="title">Title</label>
-                    <input type="text"
-                           class="form-control @error('title') is-invalid @enderror"
-                           id="title"
-                           placeholder="Título del reporte"
-                           name="title"
-                           value="{{ $report->title }}"
-                           readonly>
-                </div>
-            </div>
-
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-warning" href="{{ route('expense.create', $report->id) }}">Nuevo gasto</a>
         </div>
     </div>
 @endsection

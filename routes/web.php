@@ -22,4 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/expense_reports', 'ExpenseReportController');
+
+Route::resource('/expense_reports/{expense_reports}/expense', 'ExpenseController');
+
 Route::get('/expense_reports/{id}/confirm_delete', 'ExpenseReportController@confirmDelete')->name('expense_reports.confirmDelete');

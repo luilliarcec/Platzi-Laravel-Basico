@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ExpenseReport extends Model
 {
     /**
+     * Para trabajar con SQL Server (Fechas)
+     * @var string
+     */
+    protected $dateFormat = 'Y-d-m H:i:s.v';
+
+    /**
      * Relacion de 1 a muchos
      */
     public function expenses()
@@ -14,12 +20,9 @@ class ExpenseReport extends Model
         return $this->hasMany(Expense::class);
     }
 
-    /**
-     * Para trabajar con SQL Server (Fechas)
-     * @var string
+    /*
+     * Aquellos campos que pueden ser modificados de manera masiva por el usuario
      */
-    protected $dateFormat = 'Y-d-m H:i:s.v';
-
     protected $fillable = [
         'title'
     ];

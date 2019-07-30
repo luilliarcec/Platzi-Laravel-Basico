@@ -19,7 +19,9 @@ class CreateExpensesTable extends Migration
             $table->text('description');
             $table->decimal('amount');
             $table->timestamps();
-            $table->foreign('expense_report_id')->references('id')->on('expense_reports');
+            $table->foreign('expense_report_id')
+                ->references('id')->on('expense_reports')
+                ->onDelete('cascade');
         });
     }
 
