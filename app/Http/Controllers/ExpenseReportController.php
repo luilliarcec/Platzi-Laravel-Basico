@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\ExpenseReport;
 use App\Http\Requests\StoreExpenseReport;
+use App\Mail\SummaryReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 class ExpenseReportController extends Controller
 {
@@ -123,11 +125,10 @@ class ExpenseReportController extends Controller
         ]);
     }
 
-    public function sendMail($id)
+    public function sendMail(Request $request, $id)
     {
         $report = ExpenseReport::findOrFail($id);
-        return view('expense-reports.confirm-send-mail',[
-            'report' => $report,
-        ]);
+        Mail::to($request->get('email'))->send(new SummaryReport($report));
+        return redirect()->route('expense_reports.show', $id);
     }
 }
