@@ -12,6 +12,14 @@ class ExpenseReport extends Model
      */
     protected $dateFormat = 'Y-d-m H:i:s.v';
 
+    /*
+     * Relacion inversa Pertenece a Uno
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Relacion de 1 a muchos
      */

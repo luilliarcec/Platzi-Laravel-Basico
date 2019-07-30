@@ -16,6 +16,17 @@ class User extends Authenticatable
      */
     protected $dateFormat = 'Y-d-m H:i:s.v';
 
+    /**
+     * Relacion de 1 a muchos
+     */
+    public function reports()
+    {
+        return $this->hasMany(ExpenseReport::class);
+    }
+
+    /*
+     * Campos que pueden ser modificados masivamente
+     */
     protected $fillable = [
         'name', 'email', 'password',
     ];

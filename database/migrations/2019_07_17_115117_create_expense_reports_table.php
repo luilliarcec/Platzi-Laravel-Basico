@@ -15,8 +15,12 @@ class CreateExpenseReportsTable extends Migration
     {
         Schema::create('expense_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('title', 255);
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
