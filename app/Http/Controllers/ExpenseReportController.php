@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Mail;
 
 class ExpenseReportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    /**
+     * @return void
+     */
     public function index()
     {
         return view('expense-reports.index', [
@@ -19,6 +28,9 @@ class ExpenseReportController extends Controller
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function create()
     {
         return view('expense-reports.create');
@@ -32,7 +44,7 @@ class ExpenseReportController extends Controller
      */
     public function store(StoreExpenseReport $request)
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $report = new ExpenseReport();
         $report->title = $request->get('title');
@@ -77,7 +89,7 @@ class ExpenseReportController extends Controller
      */
     public function update(StoreExpenseReport $request, $id)
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $report = ExpenseReport::findOrFail($id);
         $report->title = $request->get('title');

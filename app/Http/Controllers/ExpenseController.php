@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +38,7 @@ class ExpenseController extends Controller
      */
     public function store($id, StoreExpenses $request)
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $expense = new Expense();
         $expense->description = $request->get('description');
