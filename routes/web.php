@@ -21,8 +21,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/* Expenses Reports */
 Route::resource('/expense_reports', 'ExpenseReportController');
 
-Route::resource('/expense_reports/{expense_reports}/expense', 'ExpenseController');
+Route::get('/expense_reports/{expense_report}/confirm_delete', 'ExpenseReportController@confirmDelete')
+    ->name('expense_reports.confirmDelete');
 
-Route::get('/expense_reports/{id}/confirm_delete', 'ExpenseReportController@confirmDelete')->name('expense_reports.confirmDelete');
+Route::get('/expense_reports/{expense_reports}/send_mail', 'ExpenseReportController@confirmSendMail')
+    ->name('expense_reports.confirmSendMail');
+
+/* Expenses */
+Route::get('/expense_reports/{expense_reports}/expense/create', 'ExpenseController@create')
+    ->name('expense.create');
+
+Route::post('/expense_reports/{expense_reports}/expense', 'ExpenseController@store')
+    ->name('expense.store');
+
+Route::delete('/expense_reports/{expense_reports}/expense/{expense}', 'ExpenseController@destroy')
+    ->name('expense.destroy');

@@ -11,10 +11,16 @@
         <div class="col">
             <a class="btn btn-secondary" href="{{ route('expense_reports.index') }}">Atrás</a>
         </div>
+
+        <div class="col offset-9">
+            <a class="btn btn-success" href="{{ route('expense_reports.confirmSendMail', $report->id) }}">Enviar Mail</a>
+        </div>
     </div>
 
     <div class="row">
-        <h3>Detalles</h3>
+        <div class="col">
+            <h3>Detalles</h3>
+        </div>
     </div>
 
     <div class="row">
