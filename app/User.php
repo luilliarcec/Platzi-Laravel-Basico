@@ -11,12 +11,6 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * Para trabajar con SQL Server (Fechas)
-     * @var string
-     */
-    protected $dateFormat = 'Y-d-m H:i:s.v';
-
-    /**
      * Relacion de 1 a muchos
      */
     public function reports()

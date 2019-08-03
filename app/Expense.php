@@ -11,12 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Expense extends Model
 {
-    /**
-     * Para trabajar con SQL Server (Fechas)
-     * @var string
-     */
-    protected $dateFormat = 'Y-d-m H:i:s.v';
-
     /*
      * Relacion inversa Pertenece a Uno
      */
