@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\ExpenseReport;
-use App\Http\Requests\StoreExpenses;
+use App\Http\Requests\ExpenseRequest;
 use \Illuminate\Auth\Access\AuthorizationException;
-use http\Env\Response;
-use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
@@ -36,15 +34,14 @@ class ExpenseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreExpenses $request
+     * @param ExpenseRequest $request
      * @param $id
      * @return void
      * @throws AuthorizationException
      */
-    public function store($id, StoreExpenses $request)
+    public function store($id, ExpenseRequest $request)
     {
         $this->authorize('view', ExpenseReport::find($id));
-        $request->validated();
 
         $expense = new Expense();
         $expense->description = $request->get('description');

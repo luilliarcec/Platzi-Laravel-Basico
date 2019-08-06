@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExpenseReport;
-use App\Http\Requests\StoreExpenseReport;
+use App\Http\Requests\ExpenseReportRequest;
 use App\Mail\SummaryReport;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,13 +42,11 @@ class ExpenseReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreExpenseReport $request
+     * @param ExpenseReportRequest $request
      * @return Response
      */
-    public function store(StoreExpenseReport $request)
+    public function store(ExpenseReportRequest $request)
     {
-        $request->validated();
-
         $report = new ExpenseReport();
         $report->title = $request->get('title');
         $report->user_id = Auth::user()->id;
@@ -86,14 +84,13 @@ class ExpenseReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreExpenseReport $request
+     * @param ExpenseReportRequest $request
      * @param ExpenseReport $expenseReport
      * @return Response
      */
-    public function update(StoreExpenseReport $request, ExpenseReport $expenseReport)
+    public function update(ExpenseReportRequest $request, ExpenseReport $expenseReport)
     {
-        $request->validated();
-        $expenseReport->title = $request->get('title');
+        $expenseReport->fill($request->all());
         $expenseReport->save();
 
         return redirect()->route('expense_reports.index');
